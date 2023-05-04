@@ -24,15 +24,15 @@ SET(INSTALL_PATH "opt/xilinx/kr260_gps_1588_ptp")
 
 
 
-install(PROGRAMS src/main.py DESTINATION ${INSTALL_PATH}/bin)
+install(PROGRAMS 
+	src/master_gui.py
+	src/slave_gui.py		
+	DESTINATION ${INSTALL_PATH}/bin)
 
 
 install(PROGRAMS
-    script/01.mipi-rtsp.sh
-    script/02.mipi-dp.sh
-    script/03.file-file.sh
-    script/04.file-ssd-dp.sh
-    script/smartcam-install.py
+    script/master.sh
+    script/master.sh
     DESTINATION ${INSTALL_PATH}/bin)
 
 install(FILES
@@ -43,6 +43,10 @@ install(FILES
 install(DIRECTORY
     notebook/
     DESTINATION ${INSTALL_PATH}/share/notebooks/)
+
+install (DIRECTORY
+    images/
+    DESTINATION ${INSTALL_PATH}/images
 
 set(VERSION "1.0.1")
 set(CPACK_PACKAGE_VERSION ${VERSION})
