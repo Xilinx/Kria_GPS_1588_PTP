@@ -20,7 +20,7 @@ project(gps-ptp-application)
 
 find_package(Python3 REQUIRED)
 
-SET(INSTALL_PATH "opt/xilinx/kr260_gps_1588_ptp")
+SET(INSTALL_PATH "/opt/xilinx/kr260_gps_1588_ptp")
 
 
 
@@ -36,7 +36,7 @@ install(PROGRAMS
     DESTINATION ${INSTALL_PATH}/bin)
 
 install(FILES
-    README
+    README.md
     DESTINATION ${INSTALL_PATH}/
     )
 
@@ -46,7 +46,7 @@ install(DIRECTORY
 
 install (DIRECTORY
     images/
-    DESTINATION ${INSTALL_PATH}/images)
+    DESTINATION ${INSTALL_PATH}/share/images)
 
 set(VERSION "1.0.1")
 set(CPACK_PACKAGE_VERSION ${VERSION})
