@@ -46,7 +46,7 @@ install(DIRECTORY
 
 install (DIRECTORY
     images/
-    DESTINATION ${INSTALL_PATH}/images
+    DESTINATION ${INSTALL_PATH}/images)
 
 set(VERSION "1.0.1")
 set(CPACK_PACKAGE_VERSION ${VERSION})
