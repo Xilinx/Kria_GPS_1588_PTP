@@ -83,7 +83,7 @@ canvas_widget2=Canvas(masterWindow,width=canvas_window_width,height=canvas_windo
 canvas_widget2.place(relx=0.5,rely=0.5,anchor=SW)
 canvas_window_width=int(canvas_window_width)
 canvas_window_height=int(canvas_window_height)
-image=Image.open("../images/latest.png")
+image=Image.open("../images/board2board.png")
 image=image.resize((canvas_window_width,canvas_window_height),Image.ANTIALIAS)
 blk_dgm=ImageTk.PhotoImage(image)
 canvas_widget2.create_image(canvas_window_width,canvas_window_height,anchor='se',image=blk_dgm)
