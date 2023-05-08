@@ -14,6 +14,7 @@ import subprocess
         
 def Phc2sys():
     termf.process = subprocess.Popen(['xterm', '-into', str(termf.winfo_id()), '-e', 'bash -c "  phc2sys -s eth0 -O 0 -m & bash"'])
+    time.sleep(10)
     now = datetime.now()
     now =datetime.now()
     system_time=now.strftime("%H:%M:%S %d/%m/%Y")
@@ -23,9 +24,9 @@ def Phc2sys():
     output = stream.read()
     phc_time=output.strip().split("or ")[1]
     phc_clock_entry_widget.delete(0,END)
-    phc_clock_status_entry_widget.delete(0,END)
     phc_clock_entry_widget.insert(0,phc_time)
-    phc_clock_status_entry_widget.insert(0,"Yes")
+    system_time_status_entry_widget.delete(0,END)
+    system_time_status_entry_widget.insert(0,"yes")
 
 def Ptp4l():
     termf.process = subprocess.Popen(['xterm', '-into', str(termf.winfo_id()), '-e', 'bash -c "  ptp4l -i eth0 -m -s & bash"'])
@@ -47,6 +48,7 @@ def ptp4l_status():
 
 
 masterWindow= Tk()
+masterWindow.title('slave')
 screen_width = masterWindow.winfo_screenwidth()
 screen_height = masterWindow.winfo_screenheight()
 
@@ -81,7 +83,7 @@ canvas_widget2=Canvas(masterWindow,width=canvas_window_width,height=canvas_windo
 canvas_widget2.place(relx=0.5,rely=0.5,anchor=SW)
 canvas_window_width=int(canvas_window_width)
 canvas_window_height=int(canvas_window_height)
-image=Image.open("../images/board2board.png")
+image=Image.open("../images/latest.png")
 image=image.resize((canvas_window_width,canvas_window_height),Image.ANTIALIAS)
 blk_dgm=ImageTk.PhotoImage(image)
 canvas_widget2.create_image(canvas_window_width,canvas_window_height,anchor='se',image=blk_dgm)
@@ -89,44 +91,47 @@ canvas_widget2.create_image(canvas_window_width,canvas_window_height,anchor='se'
 
 ### status update text creation in canvas_widget5 ##########
 
-canvas_widget = canvas_widget5.create_text(canvas_window_width*0.1,canvas_window_height*0.21,anchor='n', font = ('Rockwell', 9),fill="purple1",text="System Time :")
-canvas_widget = canvas_widget5.create_text(canvas_window_width*0.1,canvas_window_height*0.36,anchor='n', font = ('Rockwell', 9),fill="purple1",text="System Time  :\nSync status ")
-canvas_widget = canvas_widget5.create_text(canvas_window_width*0.1,canvas_window_height*0.51,anchor='n', font = ('Rockwell', 9),fill="purple1",text=" PHC Time      :")
-canvas_widget = canvas_widget5.create_text(canvas_window_width*0.1,canvas_window_height*0.67,anchor='n', font = ('Rockwell', 9),fill="purple1",text=" PHC Time     :\nSync status  ")
+canvas_widget = canvas_widget5.create_text(canvas_window_width*0.1,canvas_window_height*0.53,anchor='n', font = ('Rockwell', 9),fill="purple1",text="System Time :")
+canvas_widget = canvas_widget5.create_text(canvas_window_width*0.1,canvas_window_height*0.69,anchor='n', font = ('Rockwell', 9),fill="purple1",text="System Time  :\nSync status ")
+canvas_widget = canvas_widget5.create_text(canvas_window_width*0.1,canvas_window_height*0.23,anchor='n', font = ('Rockwell', 9),fill="purple1",text=" PHC Time      :")
+canvas_widget = canvas_widget5.create_text(canvas_window_width*0.1,canvas_window_height*0.37,anchor='n', font = ('Rockwell', 9),fill="purple1",text=" PHC Time     :\nSync status  ")
+
 
 
 #### status entry widgets #########
 
 system_time_entry_widget = Entry(canvas_widget1,highlightthickness=1)
-canvas_widget5.create_window(canvas_window_width*0.4,canvas_window_height*0.38,anchor='s',window=system_time_entry_widget)
+canvas_widget5.create_window(canvas_window_width*0.4,canvas_window_height*0.58,anchor='s',window=system_time_entry_widget)
 system_time_entry_widget.config(highlightbackground = "black",highlightcolor = "red")
 
 
 system_time_status_entry_widget = Entry(canvas_widget1,highlightthickness=1)
-canvas_widget5.create_window(canvas_window_width*0.4,canvas_window_height*0.53,anchor='s',window=system_time_status_entry_widget)
+canvas_widget5.create_window(canvas_window_width*0.4,canvas_window_height*0.75,anchor='s',window=system_time_status_entry_widget)
 system_time_status_entry_widget.config(highlightbackground = "black",highlightcolor = "red")
 
 
 phc_clock_entry_widget = Entry(canvas_widget1,highlightthickness=1)
-canvas_widget5.create_window(canvas_window_width*0.4,canvas_window_height*0.68,anchor='s',window=phc_clock_entry_widget)
+canvas_widget5.create_window(canvas_window_width*0.4,canvas_window_height*0.28,anchor='s',window=phc_clock_entry_widget)
 phc_clock_entry_widget.config(highlightbackground = "black",highlightcolor = "red")
 
 phc_clock_status_entry_widget = Entry(canvas_widget1,highlightthickness=1)
-canvas_widget5.create_window(canvas_window_width*0.4,canvas_window_height*0.8,anchor='s',window=phc_clock_status_entry_widget)
+canvas_widget5.create_window(canvas_window_width*0.4,canvas_window_height*0.42,anchor='s',window=phc_clock_status_entry_widget)
 phc_clock_status_entry_widget.config(highlightbackground = "black",highlightcolor = "red")
 
 ###### Buttons Creation  ############
 
 
+
+
+
 phc2sys_btn = Button(canvas_widget1,text = 'phc2sys ',font = ('calibri',10,'bold'),  bg = 'salmon4',foreground='black',command = lambda: [Phc2sys(),phc2sys_status()],anchor='n')
-phc2sys_btn.place(x=canvas_window_width*0.1,y=canvas_window_height*25)
+phc2sys_btn.place(x=canvas_window_width*0.1,y=canvas_window_height*0.51)
 
 ptp4l_btn = Button(canvas_widget1,text = '  ptp4l   ',font = ('calibri',10,'bold'),  bg = 'MediumPurple1',foreground='black',command =lambda:[Ptp4l(),ptp4l_status()],anchor='n')
-ptp4l_btn.place(x=canvas_window_width*0.1,y=canvas_window_height*45)
+ptp4l_btn.place(x=canvas_window_width*0.1,y=canvas_window_height*0.30)
 
 exit_btn = Button(canvas_widget1, text = '   exit    ',font = ('calibri',10,'bold'),  bg = 'SeaGreen2',foreground='black',command = masterWindow.destroy,anchor='n')
-exit_btn.place(x=canvas_window_width*0.1,y=canvas_window_height*65)
-
+exit_btn.place(x=canvas_window_width*0.1,y=canvas_window_height*0.72)
 
 
 ##### default System Time and status ####
