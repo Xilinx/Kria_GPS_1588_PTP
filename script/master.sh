@@ -1,10 +1,6 @@
 #!/bin/sh
 echo "***************PHC clock syncronization with GPS*************** "
-#echo "Enter the time for testing in seconds:"
-#read IP_address
-#ifconfig eth0 $IP_address
-#ppstest /dev/pps1
-#mv /dev/ttyUL0 /dev/tty16
+mv /dev/ttyULR0 /dev/tty16
 killall -9 gpsd
 systemctl disable gpsd.socket
 sleep 1

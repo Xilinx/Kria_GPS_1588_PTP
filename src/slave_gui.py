@@ -41,7 +41,7 @@ def Ptp4l():
 
 
 def phc2sys_status():
-    tkinter.messagebox.showinfo("welcome",  "PHC Time updated with gps time ")
+    tkinter.messagebox.showinfo("welcome",  " System time updated with gps time ")
 
 def ptp4l_status():
     tkinter.messagebox.showinfo("welcome",  "ptp4l Application Running ")
