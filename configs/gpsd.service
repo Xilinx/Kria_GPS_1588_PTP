@@ -1,0 +1,11 @@
+#
+# Copyright (C) 2023 Advanced Micro Devices, Inc.
+# SPDX-License-Identifier: MIT
+#
+[Unit]
+Description=GPS (Global Positioning System) Daemon
+[Service]
+EnvironmentFile=-/etc/default/gpsd
+ExecStart=/usr/sbin/gpsd $GPSD_OPTIONS $OPTIONS $DEVICES
+[Install]
+WantedBy=multi-user.target  
