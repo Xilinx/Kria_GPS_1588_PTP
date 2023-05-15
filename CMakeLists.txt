@@ -7,7 +7,7 @@ cmake_minimum_required(VERSION 3.5)
 
 project(gps-ptp-application)
 
-find_package(Python3 REQUIRED)
+#find_package(Python3 REQUIRED)
 
 SET(INSTALL_PATH "/opt/xilinx/kr260-gps-1588-ptp")
 
@@ -39,8 +39,7 @@ install (DIRECTORY
 
 install (DIRECTORY
         configs/
-        DESTINATION ${INSTALL_PATH}/configs)
-
+        DESTINATION ${INSTALL_PATH}/configs/)
 
 set(VERSION "1.0.1")
 set(CPACK_PACKAGE_VERSION ${VERSION})
