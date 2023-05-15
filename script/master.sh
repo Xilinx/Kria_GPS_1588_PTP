@@ -1,5 +1,8 @@
-#!/bin/sh
-echo "***************PHC clock syncronization with GPS*************** "
+#!/bin/bash
+#
+# Copyright (C) 2023 Advanced Micro Devices, Inc.
+# SPDX-License-Identifier: MIT
+
 mv /dev/ttyULR0 /dev/tty16
 killall -9 gpsd
 systemctl disable gpsd.socket

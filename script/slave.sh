@@ -1,3 +1,8 @@
+#!/bin/bash
+#
+# Copyright (C) 2023 Advanced Micro Devices, Inc.
+# SPDX-License-Identifier: MIT
+#
 timedatectl
 echo "gps testing"
 phc_ctl /dev/ptp1 get
@@ -10,7 +15,7 @@ timedatectl
 phc2sys -s eth0 -O 0 &
 echo "********************** Phc2sys Application is Running ***************************"
 sleep 5
-echo "*******************  system clock Synchronized with PHC_HW ************************"
+echo "*******************  system clock Synchronized with PHC clock ************************"
 timedatectl
 phc_ctl /dev/ptp1 get
 
