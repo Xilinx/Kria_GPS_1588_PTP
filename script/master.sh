@@ -3,7 +3,14 @@
 # Copyright (C) 2023 Advanced Micro Devices, Inc.
 # SPDX-License-Identifier: MIT
 
-mv /dev/ttyULR0 /dev/tty16
+FILE=/dev/$(dmesg |  grep axi:pps_axi_gpio_0 | grep -o "pps.:" | sed s'/.$//'| tail -1)
+if [ ! -c "$FILE" ]; then
+    echo "please load kr260-gps-1588-ptp firmware"
+    exit
+fi
+if [  -c "/dev/ttyULR0" ]; then
+    mv /dev/ttyULR0 /dev/tty16
+fi
 killall -9 gpsd
 systemctl disable gpsd.socket
 sleep 1
