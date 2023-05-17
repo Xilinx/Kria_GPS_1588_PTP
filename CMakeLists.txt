@@ -23,6 +23,8 @@ install(PROGRAMS
 	script/slave.sh
 	script/master.sh
 	script/gps-1588-ptp-install.py
+	script/gps-1588-ptp-master
+	script/gps-1588-ptp-slave
 	DESTINATION ${INSTALL_PATH}/bin)
 
 install(FILES

@@ -1,0 +1,34 @@
+#!/bin/bash
+#
+# Copyright (C) 2023 Advanced Micro Devices, Inc.
+# SPDX-License-Identifier: MIT
+
+mode=$1
+
+help="
+usage: gps-1588-ptp [OPTIONS]   \n
+Bash wrapper to interact with the gps-1588-ptp app on KR260     \n
+If no options are provided, it will run in terminal mode        \n
+\n
+  Options include:      \n
+  -?, -h, --help            = help message      \n
+  -gui                      = Python-tk based interactive GUI   \n
+"
+
+if [[ $mode == "-gui" ]];
+then
+        echo "Launching GUI"
+        /opt/xilinx/kr260-gps-1588-ptp/bin/slave_gui.py
+
+elif [ -z "$mode" ]; ## Any other input
+then
+        /opt/xilinx/kr260-gps-1588-ptp/bin/slave.sh
+
+elif [[ $mode == "-help" ]];
+then
+        echo -e $help
+else    ## Help if wrong arguments
+        echo "Error: Invalid input arguments"
+        echo -e "\n"
+        echo -e $help
+fi
