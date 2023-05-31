@@ -19,7 +19,7 @@ import subprocess
         
 
 def GPSD():
-    stream = os.popen('mv /dev/ttyULR0 /dev/tty16')
+    stream = os.popen('mv /dev/ttyUL0 /dev/tty16')
     stream = os.popen('killall -9 gpsd')
     stream = os.popen('systemctl disable gpsd.socket')
     stream = os.popen('systemctl stop gpsd.service')

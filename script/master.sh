@@ -8,8 +8,8 @@ if [ ! -c "$FILE" ]; then
     echo "please load kr260-gps-1588-ptp firmware"
     exit
 fi
-if [  -c "/dev/ttyULR0" ]; then
-    mv /dev/ttyULR0 /dev/tty16
+if [  -c "/dev/ttyUL0" ]; then
+    mv /dev/ttyUL0 /dev/tty16
 fi
 killall -9 gpsd
 systemctl disable gpsd.socket
