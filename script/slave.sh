@@ -4,7 +4,6 @@
 # SPDX-License-Identifier: MIT
 #
 timedatectl
-echo "gps testing"
 phc_ctl /dev/ptp1 get
 ptp4l -i eth0 -s &
 echo "********************** Ptp4l Application is Running ***************************"
@@ -17,5 +16,4 @@ echo "********************** Phc2sys Application is Running ********************
 sleep 5
 echo "*******************  system clock Synchronized with PHC clock ************************"
 timedatectl
-phc_ctl /dev/ptp1 get
 

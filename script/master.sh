@@ -22,20 +22,19 @@ sleep 1
 echo "gpsd service started"
 gpsd  -n -N /dev/tty16 &
 echo "starting chrony"
-systemctl start chrony
+systemctl restart chrony
 timedatectl
-sleep 120
+sleep 180
 chronyc sources
 chronyc tracking
 echo "************** System Clock Syncronized****************"
 timedatectl
+echo "*********** Before triggering phc2sys *************"
 phc_ctl /dev/ptp1 get
 phc2sys -c /dev/ptp1 -s CLOCK_REALTIME -O 0 &
 sleep 5
+echo "***** After triggering phc2sys the PHC time is updated with system time ******"
 phc_ctl /dev/ptp1 get
-timedatectl
-echo "*************** PHC_HW clock Syncronized ***************"
-#sleep 1
 ptp4l -i eth0  &
 echo "******** ptp4l application running**********"
 

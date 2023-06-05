@@ -31,8 +31,8 @@ def GPSD():
 
 
 def Chrony():
-    stream=os.popen('systemctl start chrony')
-    time.sleep(120)
+    stream=os.popen('systemctl restart chrony')
+    time.sleep(180)
     now = datetime.now()
     now =datetime.now()
     system_time=now.strftime("%H:%M:%S %d/%m/%Y")
